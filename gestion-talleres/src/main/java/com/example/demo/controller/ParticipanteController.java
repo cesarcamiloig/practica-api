@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/participantes")
+@RequestMapping("api/participantes")
 public class ParticipanteController {
 
     private final ParticipanteService participanteService;

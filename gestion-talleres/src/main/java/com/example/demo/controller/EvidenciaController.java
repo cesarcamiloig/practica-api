@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/evidencias")
+@RequestMapping("api/evidencias")
 public class EvidenciaController {
 
     private final EvidenciaService evidenciaService;
