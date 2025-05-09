@@ -2,27 +2,25 @@ package com.example.demo.controller;
 
 import com.example.demo.model.Programacion;
 import com.example.demo.service.ProgramacionService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/programaciones")
+@RequestMapping("/programaciones")
 public class ProgramacionController {
 
-    private final ProgramacionService programacionService;
-
-    public ProgramacionController(ProgramacionService programacionService) {
-        this.programacionService = programacionService;
-    }
+    @Autowired
+    private ProgramacionService programacionService;
 
     @GetMapping
-    public List<Programacion> getAllProgramaciones() {
+    public List<Programacion> findAll() {
         return programacionService.findAll();
     }
 
     @PostMapping
-    public Programacion createProgramacion(@RequestBody Programacion programacion) {
+    public Programacion save(@RequestBody Programacion programacion) {
         return programacionService.save(programacion);
     }
 }

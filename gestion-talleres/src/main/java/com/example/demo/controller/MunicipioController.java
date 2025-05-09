@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/municipios")
+@RequestMapping("/municipios")
 public class MunicipioController {
 
     private final MunicipioService municipioService;
@@ -17,12 +17,12 @@ public class MunicipioController {
     }
 
     @GetMapping
-    public List<Municipio> getAllMunicipios() {
+    public List<Municipio> getAll() {
         return municipioService.findAll();
     }
 
     @PostMapping
-    public Municipio createMunicipio(@RequestBody Municipio municipio) {
+    public Municipio create(@RequestBody Municipio municipio) {
         return municipioService.save(municipio);
     }
 }

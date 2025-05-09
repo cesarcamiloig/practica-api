@@ -2,37 +2,38 @@ package com.example.demo.controller;
 
 import com.example.demo.model.Participante;
 import com.example.demo.service.ParticipanteService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/api/participantes")
+@RequestMapping("/participantes")
 public class ParticipanteController {
 
-    @Autowired
-    private ParticipanteService participanteService;
+    private final ParticipanteService participanteService;
 
-    // GET /api/participantes - Listar participantes
+    public ParticipanteController(ParticipanteService participanteService) {
+        this.participanteService = participanteService;
+    }
+
     @GetMapping
-    public List<Participante> listarParticipantes() {
+    public List<Participante> getAll() {
         return participanteService.findAll();
     }
 
-    // PUT /api/participantes/{id} - Actualizar participante
-    @PutMapping("/{id}")
-    public ResponseEntity<Participante> actualizarParticipante(@PathVariable Integer id, @RequestBody Participante participante) {
-        Optional<Participante> participanteExistente = participanteService.findById(id);
+    @GetMapping("/{id}")
+    public Optional<Participante> getById(@PathVariable Integer id) {
+        return participanteService.findById(id);
+    }
 
-        if (participanteExistente.isPresent()) {
-            participante.setId(id);
-            Participante actualizado = participanteService.save(participante);
-            return ResponseEntity.ok(actualizado);
-        } else {
-            return ResponseEntity.notFound().build();
-        }
+    @PostMapping
+    public Participante create(@RequestBody Participante participante) {
+        return participanteService.save(participante);
+    }
+
+    @DeleteMapping("/{id}")
+    public void delete(@PathVariable Integer id) {
+        participanteService.deleteById(id);
     }
 }

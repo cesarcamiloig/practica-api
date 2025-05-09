@@ -2,27 +2,25 @@ package com.example.demo.controller;
 
 import com.example.demo.model.Sesion;
 import com.example.demo.service.SesionService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/sesiones")
+@RequestMapping("/sesiones")
 public class SesionController {
 
-    private final SesionService sesionService;
-
-    public SesionController(SesionService sesionService) {
-        this.sesionService = sesionService;
-    }
+    @Autowired
+    private SesionService sesionService;
 
     @GetMapping
-    public List<Sesion> getAllSesiones() {
+    public List<Sesion> findAll() {
         return sesionService.findAll();
     }
 
     @PostMapping
-    public Sesion createSesion(@RequestBody Sesion sesion) {
+    public Sesion save(@RequestBody Sesion sesion) {
         return sesionService.save(sesion);
     }
 }

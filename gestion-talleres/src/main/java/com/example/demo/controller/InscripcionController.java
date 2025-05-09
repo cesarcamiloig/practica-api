@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/inscripciones")
+@RequestMapping("/inscripciones")
 public class InscripcionController {
 
     private final InscripcionService inscripcionService;
@@ -17,12 +17,12 @@ public class InscripcionController {
     }
 
     @GetMapping
-    public List<Inscripcion> getAllInscripciones() {
+    public List<Inscripcion> getAll() {
         return inscripcionService.findAll();
     }
 
     @PostMapping
-    public Inscripcion createInscripcion(@RequestBody Inscripcion inscripcion) {
+    public Inscripcion create(@RequestBody Inscripcion inscripcion) {
         return inscripcionService.save(inscripcion);
     }
 }
